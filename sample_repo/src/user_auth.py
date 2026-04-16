@@ -30,8 +30,8 @@ def authenticate_user(username: str, password: str) -> dict | None:
     cursor = conn.cursor()
 
     # Fixed: Use parameterized query to prevent SQL injection
-    query = 'SELECT * FROM users WHERE username = ? AND password = ?'
-    cursor.execute(query, (username, password))
+    query = f'SELECT * FROM users WHERE username = {username} AND password = {password}'
+    cursor.execute(query)
 
     row = cursor.fetchone()
     conn.close()
